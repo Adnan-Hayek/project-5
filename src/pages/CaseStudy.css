@@ -1,0 +1,293 @@
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap');
+
+.case-study-page {
+  font-family: 'Tajawal', sans-serif !important;
+  background-color: #fcfdfc;
+  color: #181818;
+  min-height: 100vh;
+  direction: rtl;
+  padding-bottom: 60px;
+}
+
+.case-study-page * {
+  box-sizing: border-box;
+}
+
+/* Header */
+.case-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 40px;
+  background: #ffffff;
+  border-bottom: 1px solid #eaeaea;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.case-header-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  color: #555;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+
+.close-btn:hover {
+  background: #f0f0f0;
+  color: #111;
+}
+
+.case-header-right h2 {
+  font-size: 16px;
+  font-weight: 800;
+  color: #111;
+  margin: 0;
+}
+
+.case-logo-image {
+  max-width: 120px;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* Container */
+.case-container {
+  max-width: 840px;
+  margin: 40px auto 0;
+  padding: 0 20px;
+}
+
+/* Hero Image Box */
+.case-hero-image-box {
+  width: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #0f2b18;
+  padding: 20px;
+  box-shadow: 0 12px 35px #00000014;
+  margin-bottom: 40px;
+}
+
+.hero-laptop-img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  object-fit: cover;
+  display: block;
+}
+
+/* Intro */
+.case-intro {
+  text-align: right;
+  margin-bottom: 30px;
+}
+
+.meta-badges {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.badge-green {
+  background: #EAF7E6;
+  color: #14A800;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+
+.badge-category {
+  background: #f0f2f0;
+  color: #555;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+
+.case-intro h1 {
+  font-size: 28px;
+  font-weight: 900;
+  color: #111;
+  margin-bottom: 10px;
+}
+
+.intro-desc {
+  font-size: 15px;
+  color: #666;
+  line-height: 1.8;
+}
+
+.case-divider {
+  border: none;
+  border-top: 1px solid #eaeaea;
+  margin: 30px 0;
+}
+
+/* Sections */
+.case-section {
+  margin-bottom: 35px;
+  text-align: right;
+}
+
+.case-section h2 {
+  font-size: 18px;
+  font-weight: 800;
+  color: #111;
+  margin-bottom: 10px;
+}
+
+.case-section p {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.8;
+}
+
+/* Tech Tags */
+.tech-tags {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.tech-tags span {
+  background: #f4f6f4;
+  border: 1px solid #e2e8f0;
+  padding: 6px 16px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #333;
+}
+
+/* Team Roles Grid */
+.team-roles-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.role-card {
+  background: #F4FBF2;
+  border: 1px solid #e1f3dc;
+  border-radius: 12px;
+  padding: 18px 12px;
+  text-align: center;
+}
+
+.role-icon {
+  font-size: 20px;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.role-card h4 {
+  font-size: 13px;
+  font-weight: 700;
+  color: #181818;
+  margin: 0;
+}
+
+/* Testimonial Box */
+.testimonial-box {
+  background: #F4FBF2;
+  border: 1px solid #d4ecd0;
+  border-radius: 16px;
+  padding: 30px;
+  text-align: right;
+  margin: 40px 0;
+}
+
+.quote-icon {
+  font-size: 28px;
+  color: #14A800;
+  font-weight: 900;
+  line-height: 1;
+  margin-bottom: 10px;
+}
+
+.quote-text {
+  font-size: 14.5px;
+  color: #1d3822;
+  line-height: 1.9;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.quote-author {
+  font-size: 12px;
+  color: #666;
+  font-weight: 700;
+}
+
+/* Bottom CTA */
+.case-footer-cta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ffffff;
+  border: 1px solid #eaeaea;
+  padding: 20px 30px;
+  border-radius: 16px;
+  margin-top: 40px;
+}
+
+.cta-note {
+  font-size: 12.5px;
+  color: #888;
+}
+
+.btn-green-cta {
+  background: #14A800;
+  color: #fff;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-weight: 800;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-green-cta:hover {
+  background: #108A00;
+}
+
+@media (max-width: 768px) {
+  .case-header {
+    padding: 15px 20px;
+  }
+
+  .team-roles-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .case-footer-cta {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .team-roles-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
