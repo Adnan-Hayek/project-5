@@ -22,7 +22,7 @@ export default function App() {
       setAuthType("signup");
       setPage("login");
     } else {
-      setPage(target); // مثل "home", "about", "portfolio", "case", "escrow", "privacy", "dashboard"
+      setPage(target); // مثل "home", "about", "portfolio", "case", "escrow", "privacy", "dashboard", "ai", "smartConversation"
     }
     window.scrollTo(0, 0);
   };
@@ -32,10 +32,31 @@ export default function App() {
     return <Login initialScreen={authType} onNavigate={handleNavigate} />;
   }
 
-  // إذا توجه المستخدم إلى لوحة التحكم (بعد نجاح تسجيل الدخول)
-  if (page === "dashboard" || page === "client-portal" || page === "projects") {
-    const initialTab = page === "projects" ? "projects" : "dashboard";
-    return <ClientLayout initialTab={initialTab} onLogout={() => handleNavigate("home")} />;
+  // إذا توجه المستخدم إلى لوحة التحكم أو صفحات العميل الداخلية (بما فيها الاستشارة والمحادثة)
+  if (
+    page === "dashboard" || 
+    page === "client-portal" || 
+    page === "projects" || 
+    page === "ai" || 
+    page === "new-project" ||
+    page === "smartConsultation" ||
+    page === "smartConversation"
+  ) {
+    let initialTab = "dashboard";
+    if (page === "projects") initialTab = "projects";
+    if (page === "ai" || page === "new-project" || page === "smartConsultation" || page === "smartConversation") initialTab = "ai";
+    
+    // تمرير الحالة الحالية لـ ClientLayout لمعرفة ما إذا كنا سنعرض الاستشارة أم المحادثة
+    const subView = page === "smartConversation" ? "conversation" : "consultation";
+
+    return (
+      <ClientLayout 
+        initialTab={initialTab} 
+        subView={subView}
+        onLogout={() => handleNavigate("home")} 
+        onNavigate={handleNavigate}
+      />
+    );
   }
 
   // عرض باقي صفحات الموقع بناءً على اختيار المستخدم

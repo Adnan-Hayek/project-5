@@ -1,8 +1,9 @@
 import React from 'react';
 import logoImage from '../images/Aaa.png';
 import './About.css';
+import Header from '../components/Header';
 
-export default function About({ onNavigate, onRegister }) {
+export default function About({ onNavigate, onLogin, onRegister }) {
   const values = [
     {
       num: "١",
@@ -80,132 +81,14 @@ export default function About({ onNavigate, onRegister }) {
   return (
     <div className="about-page" dir="rtl">
       {/* 1. Navbar */}
-      <nav className="about-nav">
-        <div className="nav-container">
-          <div className="nav-logo" onClick={() => onNavigate && onNavigate('home')}>
-            <img src={logoImage} alt="ACCESS Logo" className="about-logo-image" />
-          </div>
-          <div className="nav-links">
-            <span onClick={() => onNavigate && onNavigate('home')}>الرئيسية</span>
-            <span onClick={() => onNavigate && onNavigate('portfolio')}>خدماتنا</span>
-            <span onClick={() => onNavigate && onNavigate('escrow')}>كيف نعمل</span>
-            <span onClick={() => onNavigate && onNavigate('portfolio')}>معرض الأعمال</span>
-            <span className="active" onClick={() => onNavigate && onNavigate('about')}>من نحن</span>
-            <span>تواصل معنا</span>
-          </div>
-          <div className="nav-actions">
-            <button className="btn-login" onClick={() => onNavigate && onNavigate('login')}>تسجيل الدخول</button>
-            <button className="btn-start" onClick={onRegister}>ابدأ مشروعك</button>
-          </div>
-        </div>
-      </nav>
+      <Header 
+        activePage="about" 
+        onNavigate={onNavigate} 
+        onLogin={onLogin} 
+        onRegister={onRegister} 
+      />
 
-      {/* 2. Values Section */}
-      <section className="values-section">
-        <div className="section-header-right">
-          <span className="section-sub-title">ما الذي نعتمد عليه؟</span>
-          <h2>قيم تصنع فرقاً في تجربتك</h2>
-          <p>ليست مجرد كلام على الورق، بل معايير نترجمها إلى خطوات واضحة في كل مشروع.</p>
-        </div>
-
-        <div className="values-grid">
-          {values.map((v, i) => (
-            <div className="value-card" key={i}>
-              <div className="val-top">
-                <span className="val-icon">{v.icon}</span>
-                <span className="val-num">{v.num}</span>
-              </div>
-              <h3>{v.title}</h3>
-              <p>{v.desc}</p>
-            </div>
-          ))}
-        </div>
-
-        {/* 3. Process Bar */}
-        <div className="process-bar">
-          <div className="process-title">من أول فكرة، إلى تسليم واثق.</div>
-          <div className="process-steps">
-            <span>تراجع وتستلم 📋</span>
-            <span>تشكيل الفريق واعتمد 🤝</span>
-            <span>تقسيم وتحديد النطاق 🗺️</span>
-            <span>تستلم وتسلّم 🎯</span>
-          </div>
-        </div>
-      </section>
-
-      {/* 4. Team Section */}
-      <section className="team-section">
-        <div className="section-header-right">
-          <span className="section-sub-title">القيادة والفريق الأساسي</span>
-          <h2>نؤمن بالأشخاص وراء الإنجاز</h2>
-          <p>خلف كل مشروع ناجح، يقف أفراد يمتلكون الشغف والخبرة لنقل مشاريعك إلى مستوى أفضل.</p>
-        </div>
-
-        <div className="team-grid">
-          {team.map((member, i) => (
-            <div className="team-card" key={i}>
-              <div className="team-img-box">
-                <img src={member.img} alt={member.name} />
-              </div>
-              <h3>{member.name}</h3>
-              <span className="team-role">{member.role}</span>
-              <p className="team-desc">{member.desc}</p>
-            </div>
-          ))}
-        </div>
-
-        <div className="join-network-note">
-          <span>هذا بالإضافة لشبكتنا الممتدة!</span>
-          <button className="link-green" onClick={onRegister}>انضم إلى شبكة خبرائنا ↗</button>
-        </div>
-      </section>
-
-      {/* 5. CTA Banner */}
-      <section className="cta-banner-section">
-        <div className="cta-box">
-          <div className="cta-text">
-            <h2>فكرتك تستحق الفريق المناسب</h2>
-            <p>شاركنا طموحك، ودعنا نحوله معاً إلى منتج يستحق أن يُرى.</p>
-          </div>
-          <button className="btn-green-cta" onClick={onRegister}>
-            ابدأ مشروعك الآن ↗
-          </button>
-        </div>
-      </section>
-
-      {/* 6. Footer */}
-      <footer className="about-footer">
-        <div className="footer-container">
-          <div className="footer-brand">
-            <div className="f-logo">
-              <img src={logoImage} alt="ACCESS Logo" className="about-logo-image footer-logo" />
-            </div>
-            <p>خبرات مستقلة تعمل بروح فريق واحد، تجمع المواهب والإشراف التقني لتصنع معك إنجازك القادم.</p>
-          </div>
-          <div className="footer-col">
-            <h4>اكتشف ACCESS</h4>
-            <span onClick={() => onNavigate && onNavigate('about')}>من نحن</span>
-            <span onClick={() => onNavigate && onNavigate('portfolio')}>معرض الأعمال</span>
-            <span>خدماتنا</span>
-            <span>انضم كمستقل</span>
-          </div>
-          <div className="footer-col">
-            <h4>المساعدة</h4>
-            <span>الأسئلة الشائعة</span>
-            <span>الشروط والأحكام</span>
-            <span onClick={() => onNavigate && onNavigate('privacy')}>سياسة الخصوصية</span>
-          </div>
-          <div className="footer-col">
-            <h4>نبني شيئاً مميزاً</h4>
-            <span>شاركنا تجربتك</span>
-          </div>
-        </div>
-        <div className="footer-bottom">
-          <span>جميع الحقوق محفوظة © ACCESS 2026</span>
-        </div>
-      </footer>
-
-      {/* 7. Bottom Hero Section */}
+      {/* 2. Top Hero Section */}
       <section className="about-hero-bottom">
         <div className="hero-container">
           <div className="hero-image-wrapper">
@@ -240,12 +123,117 @@ export default function About({ onNavigate, onRegister }) {
         </div>
       </section>
 
-      {/* 8. Partner Note */}
+      {/* 3. Partner Note */}
       <div className="partner-note-section">
         <h3>شريك في الرحلة، لا مجرد حلقة وصل.</h3>
         <p>بدأت الفكرة من سؤال بسيط: لماذا يضطر صاحب المشروع للاختيار بين مرونة المستقلين وتنظيم الوكالات؟ صممنا أكسس لتدمج الأفضل من الاثنين، لنمنح رؤيتك سوياً فريق عمل متكامل تفاصيل التنفيذ.</p>
         <span className="check-text">✓ تواصل واضح، مسؤولية محددة، وتسليم تطمئن إليه</span>
       </div>
+
+      {/* 4. Values Section */}
+      <section className="values-section">
+        <div className="section-header-right">
+          <span className="section-sub-title">ما الذي نعتمد عليه؟</span>
+          <h2>قيم تصنع فرقاً في تجربتك</h2>
+          <p>ليست مجرد كلام على الورق، بل معايير نترجمها إلى خطوات واضحة في كل مشروع.</p>
+        </div>
+
+        <div className="values-grid">
+          {values.map((v, i) => (
+            <div className="value-card" key={i}>
+              <div className="val-top">
+                <span className="val-icon">{v.icon}</span>
+                <span className="val-num">{v.num}</span>
+              </div>
+              <h3>{v.title}</h3>
+              <p>{v.desc}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* Process Bar */}
+        <div className="process-bar">
+          <div className="process-title">من أول فكرة، إلى تسليم واثق.</div>
+          <div className="process-steps">
+            <span>تراجع وتستلم 📋</span>
+            <span>تشكيل الفريق واعتمد 🤝</span>
+            <span>تقسيم وتحديد النطاق 🗺️</span>
+            <span>تستلم وتسلّم 🎯</span>
+          </div>
+        </div>
+      </section>
+
+      {/* 5. Team Section */}
+      <section className="team-section">
+        <div className="section-header-right">
+          <span className="section-sub-title">القيادة والفريق الأساسي</span>
+          <h2>نؤمن بالأشخاص وراء الإنجاز</h2>
+          <p>خلف كل مشروع ناجح، يقف أفراد يمتلكون الشغف والخبرة لنقل مشاريعك إلى مستوى أفضل.</p>
+        </div>
+
+        <div className="team-grid">
+          {team.map((member, i) => (
+            <div className="team-card" key={i}>
+              <div className="team-img-box">
+                <img src={member.img} alt={member.name} />
+              </div>
+              <h3>{member.name}</h3>
+              <span className="team-role">{member.role}</span>
+              <p className="team-desc">{member.desc}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="join-network-note">
+          <span>هذا بالإضافة لشبكتنا الممتدة!</span>
+          <button className="link-green" onClick={onRegister}>انضم إلى شبكة خبرائنا ↗</button>
+        </div>
+      </section>
+
+      {/* 6. CTA Banner */}
+      <section className="cta-banner-section">
+        <div className="cta-box">
+          <div className="cta-text">
+            <h2>فكرتك تستحق الفريق المناسب</h2>
+            <p>شاركنا طموحك، ودعنا نحوله معاً إلى منتج يستحق أن يُرى.</p>
+          </div>
+          <button className="btn-green-cta" onClick={onRegister}>
+            ابدأ مشروعك الآن ↗
+          </button>
+        </div>
+      </section>
+
+      {/* 7. Footer */}
+      <footer className="about-footer">
+        <div className="footer-container">
+          <div className="footer-brand">
+            <div className="f-logo">
+              <img src={logoImage} alt="ACCESS Logo" className="about-logo-image footer-logo" />
+            </div>
+            <p>خبرات مستقلة تعمل بروح فريق واحد، تجمع المواهب والإشراف التقني لتصنع معك إنجازك القادم.</p>
+          </div>
+          <div className="footer-col">
+            <h4>اكتشف ACCESS</h4>
+            <span onClick={() => onNavigate && onNavigate('about')}>من نحن</span>
+            <span onClick={() => onNavigate && onNavigate('portfolio')}>معرض الأعمال</span>
+            <span>خدماتنا</span>
+            <span>انضم كمستقل</span>
+          </div>
+          <div className="footer-col">
+            <h4>المساعدة</h4>
+            <span>الأسئلة الشائعة</span>
+            <span>الشروط والأحكام</span>
+            <span onClick={() => onNavigate && onNavigate('privacy')}>سياسة الخصوصية</span>
+          </div>
+          <div className="footer-col">
+            <h4>نبني شيئاً مميزاً</h4>
+            <span>شاركنا تجربتك</span>
+          </div>
+        </div>
+        <div className="footer-bottom">
+          <span>جميع الحقوق محفوظة © ACCESS 2026</span>
+        </div>
+      </footer>
     </div>
   );
 }

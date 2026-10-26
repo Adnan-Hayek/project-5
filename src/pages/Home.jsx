@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import logoImage from'../images/Aaa.png'
 import './Home.css';
+import Header from '../components/Header';
 import AutoAwesomeRoundedIcon from '@mui/icons-material/AutoAwesomeRounded';
 import GroupsRoundedIcon from '@mui/icons-material/GroupsRounded';
 import VerifiedUserRoundedIcon from '@mui/icons-material/VerifiedUserRounded';
@@ -46,27 +47,12 @@ const steps = [
 export default function Home({ onLogin, onRegister, onNavigate }) {
   return (
     <div className="home-page" dir="rtl">
-      <header className="home-header">
-        <a href="#home" className="home-logo" onClick={(e) => { e.preventDefault(); onNavigate && onNavigate('home'); }}>
-          <img src={logoImage} alt="ACCESS Logo" className="home-logo-image" />
-        </a>
-
-        <nav className="home-nav">
-          <a className="selected" href="#home" onClick={(e) => { e.preventDefault(); onNavigate && onNavigate('home'); }}>الرئيسية</a>
-          <a href="#work" onClick={(e) => { e.preventDefault(); onNavigate && onNavigate('portfolio'); }}>معرض الأعمال</a>
-          <a href="#benefits">استشارات ذكية</a>
-          <a href="#about" onClick={(e) => { e.preventDefault(); onNavigate && onNavigate('about'); }}>من نحن</a>
-        </nav>
-
-        <div className="home-header-actions">
-          <button className="home-login" onClick={onLogin}>
-            تسجيل الدخول
-          </button>
-          <button className="home-btn primary small" onClick={onRegister}>
-            ابدأ مشروعك
-          </button>
-        </div>
-      </header>
+      <Header 
+        activePage="home" 
+        onNavigate={onNavigate} 
+        onLogin={onLogin} 
+        onRegister={onRegister} 
+      />
 
       <main>
         <section className="home-hero home-container" id="home">
@@ -224,7 +210,7 @@ export default function Home({ onLogin, onRegister, onNavigate }) {
           </div>
         </section>
 
-        <section className="home-steps">
+        <section className="home-steps" id="steps">
           <div className="home-container steps-layout">
             <div className="steps-intro">
               <span className="home-eyebrow">رحلتك تبدأ هنا</span>

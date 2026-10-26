@@ -37,17 +37,7 @@
   margin-inline: auto;
 }
 
-.home-header {
-  width: min(1240px, calc(100% - 48px));
-  min-height: 82px;
-  margin: auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  border-bottom: 1px solid #E2E8F0;
-}
-
+/* الشعار (مُستخدم في الفوتر) */
 .home-logo {
   display: inline-flex;
   align-items: center;
@@ -58,19 +48,6 @@
   letter-spacing: .5px;
   white-space: nowrap;
 }
-.home-nav a {
-  color: #555;
-  font-size: 13.5px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: color 0.2s, font-weight 0.2s;
-}
-
-.home-nav a:hover,
-.home-nav a.selected {
-  color: #14A800 !important;
-  font-weight: 700 !important;
-}
 
 .home-logo-image {
   max-width: 130px;
@@ -78,47 +55,6 @@
   height: auto;
   object-fit: contain;
   display: block;
-}
-
-.home-logo-mark {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  display: inline-grid;
-  place-items: center;
-  background: #181818;
-  color: white;
-  font-size: 21px;
-}
-
-.home-nav,
-.home-header-actions {
-  display: flex;
-  align-items: center;
-  gap: 25px;
-}
-
-.home-nav a,
-.home-login {
-  color: #667085;
-  font-size: 13px;
-  font-weight: 500;
-}
-
-.home-nav a:hover,
-.home-nav .selected {
-  color: var(--green);
-}
-
-.home-login {
-  border: 0;
-  background: transparent;
-  font-weight: 700;
-  color: #181818;
-}
-
-.home-login:hover {
-  color: var(--green);
 }
 
 .home-btn {
@@ -823,14 +759,6 @@
 }
 
 @media (max-width: 900px) {
-  .home-nav {
-    gap: 13px;
-  }
-
-  .home-header {
-    gap: 14px;
-  }
-
   .home-hero {
     gap: 30px;
   }
@@ -842,39 +770,8 @@
 }
 
 @media (max-width: 680px) {
-
-  .home-container,
-  .home-header {
+  .home-container {
     width: calc(100% - 32px);
-  }
-
-  .home-header {
-    min-height: 72px;
-    flex-wrap: wrap;
-    padding-block: 12px;
-  }
-
-  .home-nav {
-    order: 3;
-    width: 100%;
-    overflow-x: auto;
-    padding-bottom: 5px;
-  }
-
-  .home-nav a {
-    white-space: nowrap;
-  }
-
-  .home-header-actions {
-    gap: 10px;
-  }
-
-  .home-login {
-    font-size: 12px;
-  }
-
-  .home-logo {
-    font-size: 16px;
   }
 
   .home-hero {
@@ -958,18 +855,6 @@
 }
 
 @media (max-width: 380px) {
-  .home-header-actions {
-    gap: 6px;
-  }
-
-  .home-btn.small {
-    padding: 7px 9px;
-  }
-
-  .home-login {
-    font-size: 11px;
-  }
-
   .hero-copy h1 {
     font-size: 29px;
   }

@@ -79,7 +79,7 @@ export default function ProjectsList({ onNavigate }) {
       <TopHeader 
         userName="عبدالله محمد" 
         userRole="حساب عميل" 
-        onNewProject={() => onNavigate && onNavigate('new-project')} 
+        onNewProject={() => onNavigate && onNavigate('ai')} 
       />
 
       {/* 2. رأس الصفحة */}
@@ -93,7 +93,7 @@ export default function ProjectsList({ onNavigate }) {
         </div>
         <button 
           className="btn-new-project-main" 
-          onClick={() => onNavigate('new-project')}
+          onClick={() => onNavigate('ai')}
           style={{
             background: '#14A800',
             color: '#ffffff',
@@ -250,7 +250,7 @@ export default function ProjectsList({ onNavigate }) {
               <p>حوّل فكرتك إلى ملخص واضح مع الاستشارة الذكية</p>
             </div>
           </div>
-          <button className="btn-banner-green" onClick={() => onNavigate('dashboard')}>
+          <button className="btn-banner-green" onClick={() => onNavigate('ai')}>
             ابدأ الاستشارة الذكية <ArrowOutwardRoundedIcon sx={{ fontSize: 16, verticalAlign: 'middle', mr: 0.5 }} />
           </button>
         </div>

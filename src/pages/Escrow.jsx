@@ -1,8 +1,9 @@
 import React from 'react';
 import logoImage from '../images/Aaa.png';
 import './Escrow.css';
+import Header from '../components/Header';
 
-export default function Escrow({ onNavigate }) {
+export default function Escrow({ onNavigate, onLogin, onRegister }) {
   const steps = [
     {
       num: "1",
@@ -92,25 +93,13 @@ export default function Escrow({ onNavigate }) {
 
   return (
     <div className="escrow-page" dir="rtl">
-      {/* النافبار العلوي */}
-      <nav className="escrow-nav">
-        <div className="nav-container">
-          <div className="nav-logo" onClick={() => onNavigate && onNavigate('home')}>
-            <img src={logoImage} alt="ACCESS Logo" className="escrow-logo-image" />
-          </div>
-          <div className="nav-links">
-            <span className="nav-item" onClick={() => onNavigate && onNavigate('home')}>الرئيسية</span>
-            <span className="nav-item" onClick={() => onNavigate && onNavigate('portfolio')}>استكشف الخدمات</span>
-            <span className="nav-item">للمستقلين والوكالات</span>
-            <span className="nav-item">كيف تعمل أكسس</span>
-            <span className="nav-item">مركز المساعدة</span>
-          </div>
-          <div className="nav-actions">
-            <button className="btn-login" onClick={() => onNavigate && onNavigate('login')}>تسجيل الدخول</button>
-            <button className="btn-signup" onClick={() => onNavigate && onNavigate('signup')}>انضم إلى أكسس</button>
-          </div>
-        </div>
-      </nav>
+      {/* Unified Header */}
+      <Header 
+        activePage="contact" 
+        onNavigate={onNavigate} 
+        onLogin={onLogin} 
+        onRegister={onRegister} 
+      />
 
       {/* شريط المسار Breadcrumb */}
       <div className="breadcrumb">

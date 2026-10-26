@@ -1,8 +1,9 @@
 import React from 'react';
 import logoImage from '../images/Aaa.png';
 import './Privacy.css';
+import Header from '../components/Header';
 
-export default function Privacy({ onNavigate }) {
+export default function Privacy({ onNavigate, onLogin, onRegister }) {
   const sections = [
     {
       num: "01",
@@ -34,25 +35,13 @@ export default function Privacy({ onNavigate }) {
 
   return (
     <div className="privacy-page" dir="rtl">
-      {/* النافبار العلوي */}
-      <nav className="privacy-nav">
-        <div className="nav-container">
-          <div className="nav-logo" onClick={() => onNavigate && onNavigate('home')} style={{ cursor: 'pointer' }}>
-            <img src={logoImage} alt="ACCESS Logo" className="privacy-logo-image" />
-          </div>
-          <div className="nav-links">
-            <span className="nav-item" onClick={() => onNavigate && onNavigate('home')}>الرئيسية</span>
-            <span className="nav-item" onClick={() => onNavigate && onNavigate('portfolio')}>استكشف الخدمات</span>
-            <span className="nav-item">للمستقلين والوكالات</span>
-            <span className="nav-item">كيف تعمل أكسس</span>
-            <span className="nav-item">مركز المساعدة</span>
-          </div>
-          <div className="nav-actions">
-            <button className="btn-login" onClick={() => onNavigate && onNavigate('login')}>تسجيل الدخول</button>
-            <button className="btn-signup" onClick={() => onNavigate && onNavigate('signup')}>انضم إلى أكسس</button>
-          </div>
-        </div>
-      </nav>
+      {/* Unified Header */}
+      <Header 
+        activePage="" 
+        onNavigate={onNavigate} 
+        onLogin={onLogin} 
+        onRegister={onRegister} 
+      />
 
       <div className="breadcrumb">
         <span onClick={() => onNavigate && onNavigate('home')} style={{ cursor: 'pointer' }}>الرئيسية</span> / <span className="active">سياسة الخصوصية</span>

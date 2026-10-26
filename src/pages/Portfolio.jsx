@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import logoImage from '../images/Aaa.png';
+import kkkImage from '../images/kkkk.jpeg';
 import './Portfolio.css';
+import Header from '../components/Header';
 
 export default function Portfolio({ onNavigate, onLogin, onRegister }) {
   const [activeTab, setActiveTab] = useState("الكل");
@@ -27,7 +29,8 @@ export default function Portfolio({ onNavigate, onLogin, onRegister }) {
       desc: "تجربة مستخدم ولوحة تحكم متكاملة للمؤسسات.",
       linkText: "تجربة المنصة ↗",
       status: "مكتمل",
-      img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=600&auto=format&fit=crop"
+      img:kkkImage
+     
     },
     {
       id: 3,
@@ -109,24 +112,13 @@ export default function Portfolio({ onNavigate, onLogin, onRegister }) {
 
   return (
     <div className="portfolio-page" dir="rtl">
-      {/* Header */}
-      <header className="portfolio-header">
-        <div className="portfolio-logo" onClick={() => onNavigate && onNavigate('home')} style={{ cursor: 'pointer' }}>
-          <img src={logoImage} alt="ACCESS Logo" className="portfolio-logo-image" />
-        </div>
-        <nav className="portfolio-nav">
-          <a href="#home" onClick={(e) => { e.preventDefault(); onNavigate('home'); }}>الرئيسية</a>
-          <a href="#services">خدماتنا</a>
-          <a href="#how">كيف نعمل</a>
-          <a href="#portfolio" className="active">معرض الأعمال</a>
-          <a href="#about" onClick={(e) => { e.preventDefault(); onNavigate('about'); }}>من نحن</a>
-          <a href="#contact">تواصل معنا</a>
-        </nav>
-        <div className="portfolio-actions">
-          <button className="login-link" onClick={onLogin}>تسجيل الدخول</button>
-          <button className="btn-primary" onClick={onRegister}>ابدأ مشروعك</button>
-        </div>
-      </header>
+      {/* Unified Header */}
+      <Header 
+        activePage="portfolio" 
+        onNavigate={onNavigate} 
+        onLogin={onLogin} 
+        onRegister={onRegister} 
+      />
 
       <section className="portfolio-hero">
         <span className="hero-sub">◆ معرض الأعمال</span>
@@ -212,15 +204,15 @@ export default function Portfolio({ onNavigate, onLogin, onRegister }) {
             <h4>اكتشف ACCESS</h4>
             <a href="#services">خدماتنا</a>
             <a href="#portfolio">معرض الأعمال</a>
-            <a href="#about" onClick={(e) => { e.preventDefault(); onNavigate('about'); }}>من نحن</a>
-            <a href="#escrow" onClick={(e) => { e.preventDefault(); onNavigate('escrow'); }}>الضمان المستقل</a>
+            <a href="#about" onClick={(e) => { e.preventDefault(); onNavigate && onNavigate('about'); }}>من نحن</a>
+            <a href="#escrow" onClick={(e) => { e.preventDefault(); onNavigate && onNavigate('escrow'); }}>الضمان المستقل</a>
           </div>
 
           <div className="footer-col">
             <h4>المساعدة</h4>
             <a href="#faq">الأسئلة الشائعة</a>
             <a href="#terms">الشروط والأحكام</a>
-            <a href="#privacy" onClick={(e) => { e.preventDefault(); onNavigate('privacy'); }}>سياسة الخصوصية</a>
+            <a href="#privacy" onClick={(e) => { e.preventDefault(); onNavigate && onNavigate('privacy'); }}>سياسة الخصوصية</a>
           </div>
 
           <div className="footer-col">

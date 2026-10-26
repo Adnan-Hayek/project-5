@@ -1,37 +1,155 @@
 import { useState } from 'react';
-import Logo from './Logo';
+import logoImage from '../images/Aaa.png';
 import './Header.css';
 
-export default function Header({ page, onNavigate }) {
-  const [open, setOpen] = useState(false);
-  const links = [
-    { id: 'home',     label: 'الرئيسية' },
-    { id: 'portfolio',label: 'معرض الأعمال' },
-    { id: 'escrow',   label: 'حماية المدفوعات' },
-    { id: 'privacy',  label: 'سياسة الخصوصية' },
-  ];
+export default function Header({ 
+  activePage = 'home', 
+  page, 
+  onNavigate, 
+  onLogin, 
+  onRegister 
+}) {
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  const current = activePage || page || 'home';
+
+  const handleNav = (targetId, hashTarget = null) => {
+    setMobileOpen(false);
+
+    if (hashTarget === 'home') {
+      if (current === 'home') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+      }
+    }
+
+    if (hashTarget && current === 'home') {
+      const el = document.getElementById(hashTarget);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+        return;
+      }
+    }
+
+    if (onNavigate) {
+      onNavigate(targetId);
+      if (hashTarget && hashTarget !== 'home') {
+        setTimeout(() => {
+          const el = document.getElementById(hashTarget);
+          if (el) {
+            el.scrollIntoView({ behavior: 'smooth' });
+          }
+        }, 150);
+      }
+    }
+  };
+
+  const handleLoginClick = () => {
+    setMobileOpen(false);
+    if (onLogin) onLogin();
+    else if (onNavigate) onNavigate('login');
+  };
+
+  const handleRegisterClick = () => {
+    setMobileOpen(false);
+    if (onRegister) onRegister();
+    else if (onNavigate) onNavigate('register');
+  };
+
   return (
-    <header className="header">
-      <div className="container header__inner">
-        <Logo />
-        <nav className={`header__nav ${open ? 'is-open' : ''}`}>
-          {links.map(l => (
-            <button
-              key={l.id}
-              className={`header__link ${page === l.id ? 'is-active' : ''}`}
-              onClick={() => { onNavigate(l.id); setOpen(false); }}
-            >
-              {l.label}
-            </button>
-          ))}
-          <button className="header__link header__link--mobile" onClick={() => onNavigate('login')}>تسجيل الدخول</button>
-        </nav>
-        <div className="header__actions">
-          <button className="btn btn-ghost header__login" onClick={() => onNavigate('login')}>تسجيل الدخول</button>
-          <button className="btn btn-primary" onClick={() => onNavigate('portfolio')}>ابدأ مشروعك</button>
+    <header className="unified-header" dir="rtl">
+      <div className="unified-header__container">
+        {/* الشعار على اليمين */}
+        <div 
+          className="unified-header__logo" 
+          onClick={() => handleNav('home', 'home')} 
+          style={{ cursor: 'pointer' }}
+          title="منصة ACCESS"
+        >
+          <img src={logoImage} alt="ACCESS Logo" className="unified-header__logo-img" />
         </div>
-        <button className="header__burger" onClick={() => setOpen(!open)} aria-label="القائمة">
-          <span/><span/><span/>
+
+        {/* الروابط في المنتصف */}
+        <nav className={`unified-header__nav ${mobileOpen ? 'is-open open' : ''}`}>
+          <button 
+            type="button"
+            className={`unified-header__link ${current === 'home' ? 'active' : ''}`}
+            onClick={() => handleNav('home', 'home')}
+          >
+            الرئيسية
+          </button>
+
+          <button 
+            type="button"
+            className={`unified-header__link ${current === 'services' ? 'active' : ''}`}
+            onClick={() => handleNav('home', 'benefits')}
+          >
+            خدماتنا
+          </button>
+
+          <button 
+            type="button"
+            className={`unified-header__link ${current === 'how' ? 'active' : ''}`}
+            onClick={() => handleNav('home', 'steps')}
+          >
+            كيف نعمل
+          </button>
+
+          <button 
+            type="button"
+            className={`unified-header__link ${current === 'portfolio' ? 'active' : ''}`}
+            onClick={() => handleNav('portfolio')}
+          >
+            معرض الأعمال
+          </button>
+
+          <button 
+            type="button"
+            className={`unified-header__link ${current === 'about' ? 'active' : ''}`}
+            onClick={() => handleNav('about')}
+          >
+            من نحن
+          </button>
+
+          <button 
+            type="button"
+            className={`unified-header__link ${(current === 'contact' || current === 'escrow') ? 'active' : ''}`}
+            onClick={() => handleNav('escrow')}
+          >
+            تواصل معنا
+          </button>
+
+          {/* أزرار الموبايل داخل القائمة المنسدلة */}
+          <div className="unified-header__mobile-actions">
+            <button type="button" className="unified-header__btn-login" onClick={handleLoginClick}>
+              تسجيل الدخول
+            </button>
+            <button type="button" className="unified-header__btn-start" onClick={handleRegisterClick}>
+              ابدأ مشروعك
+            </button>
+          </div>
+        </nav>
+
+        {/* أزرار العمليات على اليسار */}
+        <div className="unified-header__actions">
+          <button type="button" className="unified-header__btn-login" onClick={handleLoginClick}>
+            تسجيل الدخول
+          </button>
+          <button type="button" className="unified-header__btn-start" onClick={handleRegisterClick}>
+            ابدأ مشروعك
+          </button>
+        </div>
+
+        {/* زر القائمة للشاشات الصغيرة */}
+        <button 
+          type="button"
+          className={`unified-header__burger ${mobileOpen ? 'is-active open' : ''}`} 
+          onClick={() => setMobileOpen(!mobileOpen)} 
+          aria-label="القائمة"
+        >
+          <span />
+          <span />
+          <span />
         </button>
       </div>
     </header>

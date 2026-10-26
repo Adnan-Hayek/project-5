@@ -487,10 +487,12 @@
 }
 
 .partner-note-section {
-  text-align: center;
-  max-width: 700px;
-  margin: 0 auto 60px;
+  text-align: right;
+  max-width: 1140px;
+  margin: 0 auto 32px;
   padding: 0 20px;
+  flex-direction: column;
+ 
 }
 
 .partner-note-section h3 {

@@ -12,6 +12,16 @@
   box-shadow: 0 4px 20px #00000005;
 }
 
+.dash-top-header.embedded {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+  padding: 0 0 24px 0;
+  margin-bottom: 28px;
+  border-bottom: 1px solid #F2F4F7;
+}
+
 .dash-user-welcome {
   text-align: right;
 }
@@ -35,10 +45,10 @@
 }
 
 .dash-notification-bell {
-  background: #F9FAFB;
-  border: 1px solid #EAECF0;
-  width: 40px;
-  height: 40px;
+  background: transparent;
+  border: none;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -49,37 +59,43 @@
 
 .notif-dot {
   position: absolute;
-  top: 8px;
-  left: 10px;
-  width: 8px;
-  height: 8px;
+  top: 6px;
+  left: 8px;
+  width: 7px;
+  height: 7px;
   background: #14A800;
   border-radius: 50%;
   border: 2px solid #ffffff;
+}
+
+.header-divider-line {
+  width: 1px;
+  height: 24px;
+  background-color: #EAEAEA;
+  margin: 0 2px;
 }
 
 .dash-header-profile {
   display: flex;
   align-items: center;
   gap: 10px;
-  background: #F9FAFB;
-  border: 1px solid #EAECF0;
-  padding: 6px 14px 6px 10px;
-  border-radius: 30px;
+  background: transparent;
+  border: none;
+  padding: 4px 8px;
   cursor: pointer;
 }
 
 .header-avatar-circle {
-  width: 32px;
-  height: 32px;
-  background: #14A800;
-  color: #ffffff;
+  width: 36px;
+  height: 36px;
+  background: #EAF7E6;
+  color: #14A800;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 800;
-  font-size: 11px;
+  font-size: 13px;
 }
 
 .header-user-meta {
@@ -89,13 +105,13 @@
 }
 
 .header-user-meta strong {
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 800;
   color: #181818;
 }
 
 .header-user-meta small {
-  font-size: 10px;
+  font-size: 11px;
   color: #667085;
 }
 

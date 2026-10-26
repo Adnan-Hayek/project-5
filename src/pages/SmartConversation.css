@@ -1,0 +1,506 @@
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap');
+
+.consultation-page-wrapper {
+  padding: 24px;
+  background-color: #F8F9FA;
+  min-height: 100vh;
+  font-family: 'Tajawal', sans-serif !important;
+  direction: rtl;
+  color: #181818;
+}
+
+.consultation-page-wrapper * {
+  box-sizing: border-box;
+}
+
+/* عنوان الصفحة */
+.consultation-page-header {
+  margin-bottom: 24px;
+}
+
+.consultation-main-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.consultation-page-header h1 {
+  font-size: 22px;
+  font-weight: 900;
+  color: #111;
+  margin: 0;
+}
+
+.stage-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #EAF7E6;
+  color: #14A800;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1px solid #D4F0CD;
+}
+
+.dot-green {
+  width: 7px;
+  height: 7px;
+  background: #14A800;
+  border-radius: 50%;
+}
+
+.consultation-page-header p {
+  font-size: 13px;
+  color: #666;
+  margin: 0;
+}
+
+/* شبكة العمودين (تم عكس الترتيب هنا لتصبح المحادثة على اليمين والملخص على اليسار) */
+.consultation-grid-container {
+  display: grid;
+  grid-template-columns:1fr 380px ;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+/* ================= صَنْدُوقْ المُلَخَّصْ الحَيّ (اليَسَار) ================= */
+.live-summary-card {
+  background: #ffffff;
+  border: 1px solid #EAEAEA;
+  border-radius: 16px;
+  padding: 22px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+}
+
+.summary-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.summary-header h3 {
+  font-size: 16px;
+  font-weight: 800;
+  color: #111;
+  margin: 0;
+}
+
+.status-badge-draft {
+  display: inline-block;
+  background: #FEF3C7;
+  color: #D97706;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 10px;
+  border-radius: 6px;
+  margin-bottom: 16px;
+}
+
+.summary-section-item {
+  margin-bottom: 16px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #F0F0F0;
+}
+
+.summary-section-item:last-of-type {
+  border-bottom: none;
+}
+
+.summary-label {
+  display: block;
+  font-size: 11.5px;
+  color: #888;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.summary-section-item h4 {
+  font-size: 15px;
+  font-weight: 800;
+  color: #111;
+  margin: 0 0 2px 0;
+}
+
+.summary-desc, .summary-text {
+  font-size: 12.5px;
+  color: #555;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.features-list li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.5px;
+  color: #333;
+  font-weight: 600;
+}
+
+.tech-tags {
+  display: flex;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.tech-tags span {
+  background: #F2F4F2;
+  color: #333;
+  font-size: 11.5px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 6px;
+}
+
+/* صندوق الميزانية والمدة */
+.budget-duration-box {
+  background: #F9FAFB;
+  border: 1px solid #EAECF0;
+  border-radius: 12px;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.bd-col {
+  flex: 1;
+  text-align: center;
+}
+
+.bd-col span {
+  font-size: 10.5px;
+  color: #666;
+  display: block;
+  margin-bottom: 2px;
+}
+
+.bd-col strong {
+  font-size: 13px;
+  color: #111;
+  font-weight: 800;
+}
+
+.bd-divider {
+  width: 1px;
+  height: 28px;
+  background: #D9D9D9;
+}
+
+.bd-note {
+  font-size: 10.5px;
+  color: #888;
+  text-align: center;
+  margin: 8px 0 14px 0;
+}
+
+.summary-footer-status {
+  font-size: 11.5px;
+  color: #14A800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+
+.btn-approve-project {
+  background: #14A800;
+  color: #fff;
+  border: none;
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  font-family: 'Tajawal', sans-serif;
+  font-size: 13.5px;
+  font-weight: 800;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background 0.2s;
+}
+
+.btn-approve-project:hover {
+  background: #108A00;
+}
+
+.edit-note-text {
+  font-size: 11px;
+  color: #777;
+  text-align: center;
+  margin-top: 8px;
+}
+
+
+/* ================= وَاجِهَة المُحَادَثَة (اليَمِين) ================= */
+.chat-interface-card {
+  background: #ffffff;
+  border: 1px solid #EAEAEA;
+  border-radius: 16px;
+  padding: 22px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+  display: flex;
+  flex-direction: column;
+  min-height: 620px;
+}
+
+.chat-top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #F0F0F0;
+}
+
+.chat-bot-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.bot-avatar-icon {
+  width: 36px;
+  height: 36px;
+  background: #EAF7E6;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chat-bot-info strong {
+  font-size: 14px;
+  font-weight: 800;
+  color: #111;
+  display: block;
+}
+
+.chat-bot-info small {
+  font-size: 11px;
+  color: #666;
+}
+
+.chat-dots {
+  color: #888;
+  font-weight: bold;
+  letter-spacing: 2px;
+  cursor: pointer;
+}
+
+.chat-session-divider {
+  text-align: center;
+  margin: 18px 0;
+  position: relative;
+}
+
+.chat-session-divider span {
+  background: #F4F5F4;
+  color: #666;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 14px;
+  border-radius: 12px;
+}
+
+.chat-messages-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.chat-bubble-row {
+  display: flex;
+  gap: 10px;
+  max-width: 85%;
+}
+
+.chat-bubble-row.ai {
+  align-self: flex-start;
+}
+
+.chat-bubble-row.user {
+  align-self: flex-end;
+  flex-direction: row-reverse;
+}
+
+.bubble-avatar {
+  width: 28px;
+  height: 28px;
+  background: #EAF7E6;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+.chat-bubble {
+  padding: 12px 16px;
+  border-radius: 14px;
+  line-height: 1.6;
+}
+
+.chat-bubble.ai {
+  background: #F4F5F4;
+  color: #222;
+  border-top-right-radius: 4px;
+}
+
+.chat-bubble.user {
+  background: #EAF7E6;
+  color: #111;
+  border-top-left-radius: 4px;
+}
+
+.bubble-sender-name {
+  font-size: 11px;
+  color: #555;
+  display: block;
+  margin-bottom: 2px;
+  font-weight: 700;
+}
+
+.chat-bubble p {
+  font-size: 13px;
+  margin: 0;
+}
+
+/* اقتراحات سريعة داخل الشات */
+.quick-suggestions-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.quick-suggestions-row button {
+  background: #ffffff;
+  border: 1px solid #D4D4D4;
+  color: #333;
+  font-size: 12px;
+  font-family: 'Tajawal', sans-serif;
+  padding: 6px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.quick-suggestions-row button.active-suggestion {
+  background: #EAF7E6;
+  border-color: #14A800;
+  color: #14A800;
+  font-weight: 700;
+}
+
+/* صندوق الإدخال السفلي */
+.chat-input-box {
+  background: #FAFAFA;
+  border: 1.5px solid #EAEAEA;
+  border-radius: 12px;
+  padding: 12px;
+  transition: 0.2s;
+}
+
+.chat-input-box:focus-within {
+  border-color: #14A800;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(20, 168, 0, 0.08);
+}
+
+.chat-input-box textarea {
+  width: 100%;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-family: 'Tajawal', sans-serif;
+  font-size: 13px;
+  color: #181818;
+  resize: none;
+  line-height: 1.5;
+}
+
+.chat-input-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid #EFEFEF;
+}
+
+.chat-left-tools {
+  display: flex;
+  gap: 6px;
+}
+
+.chat-left-tools button {
+  background: none;
+  border: none;
+  color: #666;
+  cursor: pointer;
+  padding: 4px 6px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+}
+
+.chat-left-tools button:hover {
+  background: #EFEFEF;
+  color: #111;
+}
+
+.chat-send-btn {
+  background: #14A800;
+  color: #fff;
+  border: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.chat-send-btn:hover {
+  background: #108A00;
+}
+
+.chat-security-footer {
+  font-size: 11px;
+  color: #888;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  margin-top: 12px;
+}
+
+/* ================= التجاوب (Responsive) ================= */
+@media (max-width: 992px) {
+  .consultation-grid-container {
+    grid-template-columns: 1fr;
+  }
+}
+

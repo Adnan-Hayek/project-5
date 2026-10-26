@@ -3,13 +3,21 @@ import './TopHeader.css';
 import NotificationsNoneRoundedIcon from '@mui/icons-material/NotificationsNoneRounded';
 import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
 
-export default function TopHeader({ userName = "عبدالله محمد", userRole = "حساب عميل", onNewProject }) {
+export default function TopHeader({ 
+  userName = "عبدالله العتيبي", 
+  greetingName,
+  userRole = "حساب عميل", 
+  onNewProject,
+  embedded = false 
+}) {
+  const displayGreeting = greetingName || (userName ? userName.split(' ')[0] : 'عبدالله');
+
   return (
-    <header className="dash-top-header" dir="rtl">
+    <header className={`dash-top-header ${embedded ? 'embedded' : ''}`} dir="rtl">
       {/* القسم الأيمن: الترحيب والوصف */}
       <div className="dash-user-welcome">
-        <h1>مرحباً، {userName} 👋</h1>
-        <span>كل ما تحتاجه لانجاز مشروعك، في مكان واحد</span>
+        <h1>مرحباً، {displayGreeting} 👋</h1>
+        <span>كل ما تحتاجه لإنجاز مشروعك في مكان واحد</span>
       </div>
 
       {/* القسم الأيسر: الإشعارات وبروفايل المستخدم */}
@@ -19,6 +27,9 @@ export default function TopHeader({ userName = "عبدالله محمد", userRo
           <NotificationsNoneRoundedIcon sx={{ fontSize: 21, color: '#475467' }} />
           <span className="notif-dot"></span>
         </div>
+
+        {/* فاصل رأسي خفيف مطابق للصورة */}
+        <div className="header-divider-line"></div>
 
         {/* بروفايل المستخدم */}
         <div className="dash-header-profile">
