@@ -22,7 +22,7 @@ export default function App() {
       setAuthType("signup");
       setPage("login");
     } else {
-      setPage(target); // مثل "home", "about", "portfolio", "case", "escrow", "privacy", "dashboard", "ai", "smartConversation"
+      setPage(target); // مثل "home", "about", "portfolio", "case", "escrow", "privacy", "dashboard", "ai", "smartConversation", "settings", "profile", "messages", "wallet"
     }
     window.scrollTo(0, 0);
   };
@@ -32,11 +32,19 @@ export default function App() {
     return <Login initialScreen={authType} onNavigate={handleNavigate} />;
   }
 
-  // إذا توجه المستخدم إلى لوحة التحكم أو صفحات العميل الداخلية (بما فيها الاستشارة والمحادثة)
+  // إذا توجه المستخدم إلى لوحة التحكم أو صفحات العميل الداخلية (بما فيها المحفظة، الرسائل، تفاصيل المشروع، إلخ)
   if (
     page === "dashboard" || 
     page === "client-portal" || 
     page === "projects" || 
+    page === "project-details" ||
+    page === "review-deliverables" ||
+    page === "final-delivery" ||
+    page === "wallet" || 
+    page === "wallet-escrow" || /* <-- أضفنا صفحة المحفظة المالية هنا بنجاح */
+    page === "settings" || 
+    page === "profile" || 
+    page === "messages" || 
     page === "ai" || 
     page === "new-project" ||
     page === "smartConsultation" ||
@@ -44,6 +52,13 @@ export default function App() {
   ) {
     let initialTab = "dashboard";
     if (page === "projects") initialTab = "projects";
+    if (page === "project-details") initialTab = "project-details";
+    if (page === "review-deliverables") initialTab = "review-deliverables";
+    if (page === "final-delivery") initialTab = "final-delivery";
+    if (page === "wallet" || page === "wallet-escrow") initialTab = page === "wallet-escrow" ? "wallet-escrow" : "wallet"; /* <-- توجيه تبويب المحفظة المالية */
+    if (page === "settings") initialTab = "settings";
+    if (page === "profile") initialTab = "profile";
+    if (page === "messages") initialTab = "messages";
     if (page === "ai" || page === "new-project" || page === "smartConsultation" || page === "smartConversation") initialTab = "ai";
     
     // تمرير الحالة الحالية لـ ClientLayout لمعرفة ما إذا كنا سنعرض الاستشارة أم المحادثة

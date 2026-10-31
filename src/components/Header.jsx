@@ -116,7 +116,8 @@ export default function Header({
             className={`unified-header__link ${(current === 'contact' || current === 'escrow') ? 'active' : ''}`}
             onClick={() => handleNav('escrow')}
           >
-            تواصل معنا
+            حماية المدفوعات والضمان
+ 
           </button>
 
           {/* أزرار الموبايل داخل القائمة المنسدلة */}

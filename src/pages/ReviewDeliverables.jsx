@@ -30,7 +30,7 @@ export default function ReviewDeliverables({ onNavigate }) {
       <div className="review-top-header-row">
         <div className="breadcrumb-and-title">
           <div className="breadcrumb">مشاريعي / هوية نواة / مراجعة المخرجات</div>
-          <h1>مراجعة مخرجات: دليل هوية نواة</h1>
+          <h1>مراجعة مخرجات: دليل هوية سلة خير</h1>
           <p>راجع الملف، وأضف ملاحظاتك على المواضع التي تهمك.</p>
         </div>
         <div className="review-top-meta-left">
@@ -68,7 +68,7 @@ export default function ReviewDeliverables({ onNavigate }) {
                 <p>هوية مستوحاة من البذرة: تعكس النمو والتوازن، وتمنح نواة حضوراً بسيطاً وواثقاً.</p>
                 
                 <div className="mockup-card-box">
-                  <div className="logo-box-demo">نواة <span className="pin-num">1</span></div>
+                  <div className="logo-box-demo">سلة خير<span className="pin-num">1</span></div>
                   <small>الشعار الأساسي / النسخة المعكوسة</small>
                 </div>
 

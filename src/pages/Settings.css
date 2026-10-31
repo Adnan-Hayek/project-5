@@ -1,0 +1,616 @@
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap');
+
+.settings-page-wrapper {
+  padding: 24px;
+  background-color: #F8F9FA;
+  min-height: 100vh;
+  font-family: 'Tajawal', sans-serif !important;
+  direction: rtl;
+  color: #181818;
+}
+
+.settings-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.settings-top-title {
+  margin-bottom: 20px;
+}
+
+.settings-top-title h1 {
+  font-size: 24px;
+  font-weight: 900;
+  color: #111;
+  margin: 0 0 4px 0;
+}
+
+.settings-top-title p {
+  font-size: 13px;
+  color: #666;
+  margin: 0;
+}
+
+/* بطاقات الأقسام */
+.settings-section-card {
+  background: #ffffff;
+  border: 1px solid #EAEAEA;
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.01);
+}
+
+.section-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #F0F0F0;
+}
+
+.section-title-icon {
+  width: 36px;
+  height: 36px;
+  background: #EAF7E6;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.section-card-header h3 {
+  font-size: 16px;
+  font-weight: 800;
+  color: #111;
+  margin: 0 0 2px 0;
+}
+
+.section-card-header p {
+  font-size: 12px;
+  color: #666;
+  margin: 0;
+}
+
+.notifications-table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11.5px;
+  color: #888;
+  font-weight: 700;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #F4F4F4;
+  margin-bottom: 14px;
+}
+
+.headers-cols {
+  display: flex;
+  gap: 40px;
+}
+
+.notification-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #F8F9FA;
+}
+
+.notification-row:last-of-type {
+  border-bottom: none;
+}
+
+.notif-info strong {
+  display: block;
+  font-size: 13.5px;
+  color: #222;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.notif-info small {
+  font-size: 11.5px;
+  color: #666;
+}
+
+.notif-toggles {
+  display: flex;
+  gap: 48px;
+  align-items: center;
+}
+
+/* Switches */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 38px;
+  height: 22px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: #ccc;
+  transition: .3s;
+  border-radius: 22px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: .3s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #14A800;
+}
+
+input:checked + .slider:before {
+  transform: translateX(16px);
+}
+
+.security-notice-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #EAF7E6;
+  border: 1px solid #D4F0CD;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 12px;
+  color: #14A800;
+  font-weight: 700;
+  margin-top: 16px;
+}
+
+/* اللغة والمنطقة الزمنية */
+.language-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 10px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 12px;
+  color: #555;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid #EAEAEA;
+  background: #FAFAFA;
+  border-radius: 8px;
+  font-family: 'Tajawal', sans-serif;
+  font-size: 13px;
+  color: #111;
+  outline: none;
+}
+
+.section-note {
+  font-size: 11.5px;
+  color: #777;
+  margin-top: 8px;
+}
+
+/* شريط الحفظ */
+.settings-footer-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ffffff;
+  padding: 16px 24px;
+  border: 1px solid #EAEAEA;
+  border-radius: 12px;
+  margin-top: 20px;
+}
+
+.settings-footer-bar small {
+  font-size: 12px;
+  color: #666;
+}
+
+.footer-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-cancel {
+  background: transparent;
+  border: 1px solid #D4D4D4;
+  color: #333;
+  padding: 8px 18px;
+  border-radius: 8px;
+  font-family: 'Tajawal', sans-serif;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btn-save {
+  background: #14A800;
+  border: none;
+  color: #fff;
+  padding: 8px 22px;
+  border-radius: 8px;
+  font-family: 'Tajawal', sans-serif;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* القائمة الجانبية (اليسار) */
+.settings-sidebar {
+  background: #ffffff;
+  border: 1px solid #EAEAEA;
+  border-radius: 16px;
+  padding: 20px;
+  position: sticky;
+  top: 24px;
+}
+
+.sidebar-group-title {
+  font-size: 11px;
+  color: #888;
+  font-weight: 700;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #555;
+  text-decoration: none;
+  margin-bottom: 4px;
+  transition: 0.2s;
+}
+
+.sidebar-item:hover, .sidebar-item.active {
+  background: #EAF7E6;
+  color: #14A800;
+}
+
+.sidebar-separator {
+  height: 1px;
+  background: #EFEFEF;
+  margin: 16px 0;
+}
+
+.sidebar-user-box {
+  background: #F8F9FA;
+  border: 1px solid #EFEFEF;
+  border-radius: 12px;
+  padding: 12px;
+  margin-bottom: 12px;
+}
+
+.user-box-icon {
+  margin-bottom: 6px;
+}
+
+.sidebar-user-box strong {
+  display: block;
+  font-size: 12.5px;
+  color: #111;
+  font-weight: 800;
+  margin-bottom: 2px;
+}
+
+.sidebar-user-box small {
+  display: block;
+  font-size: 11px;
+  color: #666;
+  margin-bottom: 6px;
+  line-height: 1.4;
+}
+
+.profile-link-text {
+  font-size: 11.5px;
+  color: #14A800;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.sidebar-custom-btn {
+  width: 100%;
+  background: #F8F9FA;
+  border: 1px solid #EAEAEA;
+  color: #333;
+  padding: 10px;
+  border-radius: 8px;
+  font-family: 'Tajawal', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* التنبيه العلوي لنجاح الحفظ المطابق للصورة الرابعة */
+.settings-toast-banner {
+  position: fixed;
+  top: 24px;
+  right: 50%;
+  transform: translateX(50%);
+  background: #F0FDF4;
+  border: 1px solid #BBF7D0;
+  box-shadow: 0 10px 25px rgba(22, 163, 74, 0.15);
+  border-radius: 12px;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  z-index: 1100;
+  min-width: 320px;
+  animation: slideDownToast 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideDownToast {
+  from {
+    opacity: 0;
+    transform: translate(50%, -20px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(50%, 0);
+  }
+}
+
+.toast-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #15803D;
+  font-weight: 800;
+  font-size: 13px;
+}
+
+.toast-close {
+  background: none;
+  border: none;
+  color: #16A34A;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 2px;
+}
+
+/* شبكة البطاقات المسجلة المطابقة للصورة الثانية */
+.saved-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.card-add-box {
+  border: 2px dashed #CBD5E1;
+  background: #FAFAFA;
+  border-radius: 14px;
+  padding: 22px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-height: 130px;
+  box-sizing: border-box;
+}
+
+.card-add-box:hover {
+  border-color: #14A800;
+  background: #F0FDF4;
+}
+
+.plus-circle-icon {
+  width: 36px;
+  height: 36px;
+  background: #EAF7E6;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+.card-add-box strong {
+  font-size: 13px;
+  color: #1E293B;
+  display: block;
+}
+
+.card-add-box small {
+  font-size: 11px;
+  color: #64748B;
+  margin-top: 2px;
+}
+
+.saved-card-item {
+  background: #ffffff;
+  border: 1.5px solid #14A800;
+  border-radius: 14px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 130px;
+  box-shadow: 0 4px 12px rgba(20, 168, 0, 0.08);
+  box-sizing: border-box;
+  position: relative;
+}
+
+.card-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-brand-tag {
+  font-weight: 900;
+  font-size: 14px;
+  color: #1E293B;
+  letter-spacing: 0.5px;
+}
+
+.default-card-badge {
+  background: #EAF7E6;
+  color: #14A800;
+  font-size: 10.5px;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 6px;
+  border: 1px solid #BBF7D0;
+}
+
+.card-number-dots {
+  font-size: 18px;
+  font-weight: 800;
+  color: #1E293B;
+  letter-spacing: 2px;
+  margin: 12px 0 8px 0;
+  direction: ltr;
+  text-align: right;
+}
+
+.card-bottom-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11.5px;
+  color: #64748B;
+  font-weight: 700;
+}
+
+/* صندوق الفاتورة الضريبية */
+.tax-invoice-form-box {
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 14px;
+  padding: 20px;
+}
+
+.btn-save-billing {
+  background: #14A800;
+  color: #ffffff;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-weight: 800;
+  font-size: 13px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.2s;
+  box-shadow: 0 4px 12px rgba(20, 168, 0, 0.2);
+}
+
+.btn-save-billing:hover {
+  background: #118d00;
+}
+
+/* قسم تعطيل الحساب والمنطقة الحساسة */
+.danger-zone-card {
+  border-color: #FEE2E2 !important;
+}
+
+.danger-icon-bg {
+  background: #FEE2E2 !important;
+}
+
+.btn-deactivate-trigger {
+  background: #DC2626;
+  color: #fff;
+  border: none;
+  padding: 9px 20px;
+  border-radius: 8px;
+  font-weight: 800;
+  font-size: 12.5px;
+  font-family: inherit;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(220, 38, 38, 0.2);
+}
+
+.sidebar-item.danger-link {
+  color: #DC2626 !important;
+}
+
+.sidebar-item.danger-link:hover {
+  background: #FEF2F2 !important;
+  color: #B91C1C !important;
+}
+
+/* المودالات المخصصة للإعدادات */
+.settings-modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1200;
+  padding: 16px;
+}
+
+.settings-modal-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 24px;
+  width: 440px;
+  max-width: 95vw;
+  max-height: 85vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  box-sizing: border-box;
+}
+
+.modal-danger-icon-circle {
+  width: 52px;
+  height: 52px;
+  background: #FEF2F2;
+  border: 1px solid #FEE2E2;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 14px auto;
+}
+
+.modal-green-icon-circle {
+  width: 52px;
+  height: 52px;
+  background: #F0FDF4;
+  border: 1px solid #DCFCE7;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 14px auto;
+}

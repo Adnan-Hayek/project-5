@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import TopHeader from '../components/TopHeader';
 import SmartToyOutlinedIcon from '@mui/icons-material/SmartToyOutlined';
 import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined';
@@ -20,24 +20,28 @@ export default function SmartConversation({
   initialIdea,
   initialMessage
 }) {
-  const selectedIdea = initialData?.idea || initialIdea || 'تطوير متجر إلكتروني';
+  // حالة تخزين الفكرة أو الخدمة النشطة حالياً لتحديث الملخص بناءً عليها
+  const [currentIdea, setCurrentIdea] = useState(
+    initialData?.idea || initialIdea || 'تطوير متجر إلكتروني'
+  );
+  
   const selectedMessage = initialData?.message || initialMessage;
 
-  // خريطة تفاصيل ونماذج المشاريع بناءً على الاقتراح المختار
+  // خريطة تفاصيل ونماذج المشاريع بناءً على الاقتراح المختار أو الأزرار
   const projectDetailsMap = {
-    'إنشاء تطبيق جوال': {
-      title: 'تطبيق وصّل',
-      category: 'تطبيق جوال لتوصيل الطلبات وتتبع السائقين',
-      audience: 'المستخدمون في المملكة العربية السعودية ومقدمو الخدمات.',
+    'متجر إلكتروني': {
+      title: 'متجر رواق',
+      category: 'متجر إلكتروني للمنتجات الحرفية المحلية',
+      audience: 'المتسوقون في السعودية المهتمون بالمنتجات الحرفية المحلية.',
       features: [
-        'واجهة طلب سريعة مع تتبع حي عبر الخرائط',
-        'بوابة دفع إلكتروني ومدفوعات Apple Pay و مدى',
-        'نظام إشعارات فورية وتنبيهات للعملاء والسائقين',
-        'لوحة إدارة العمليات ومتابعة التقارير المالية'
+        'كاتالوج منتجات مع البحث والتصفية المتقدمة',
+        'الدفع عبر مدى و Apple Pay وخيارات التقسيط',
+        'تتبع الشحنات والربط مع شركات التوصيل',
+        'لوحة إدارة شاملة للمنتجات والمخزون والطلبات'
       ],
-      techs: ['Flutter', 'Node.js', 'Firebase'],
-      budget: '15-22 ألف ر.س',
-      duration: '5-7 أسابيع'
+      techs: ['Shopify', 'Next.js'],
+      budget: '12-18 ألف ر.س',
+      duration: '4-6 أسابيع'
     },
     'تطوير متجر إلكتروني': {
       title: 'متجر رواق',
@@ -53,21 +57,49 @@ export default function SmartConversation({
       budget: '12-18 ألف ر.س',
       duration: '4-6 أسابيع'
     },
-    'استشارة تقنية عامة': {
-      title: 'خارطة طريق رقمية',
-      category: 'استشارة فنية وبنية معمارية للمشاريع الرقمية',
-      audience: 'رواد الأعمال وأصحاب المشاريع الناشئة.',
+    'تطبيق جوال': {
+      title: 'تطبيق وصّل',
+      category: 'تطبيق جوال لتوصيل الطلبات وتتبع السائقين',
+      audience: 'المستخدمون في المملكة العربية السعودية ومقدمو الخدمات.',
       features: [
-        'تحليل المتطلبات التقنية ودراسة الجدوى الفنية',
-        'اختيار أفضل بنية سحابية وقواعد بيانات ملائمة',
-        'تحديد مراحل الإطلاق والتوسع (MVP)',
-        'خطة أمان وحماية البيانات والامتثال المحلي'
+        'واجهة طلب سريعة مع تتبع حي عبر الخرائط',
+        'بوابة دفع إلكتروني ومدفوعات Apple Pay و مدى',
+        'نظام إشعارات فورية وتنبيهات للعملاء والسائقين',
+        'لوحة إدارة العمليات ومتابعة التقارير المالية'
       ],
-      techs: ['AWS / Cloud', 'Microservices', 'PostgreSQL'],
-      budget: '6-10 آلاف ر.س',
+      techs: ['Flutter', 'Node.js', 'Firebase'],
+      budget: '15-22 ألف ر.س',
+      duration: '5-7 أسابيع'
+    },
+    'إنشاء تطبيق جوال': {
+      title: 'تطبيق وصّل',
+      category: 'تطبيق جوال لتوصيل الطلبات وتتبع السائقين',
+      audience: 'المستخدمون في المملكة العربية السعودية ومقدمو الخدمات.',
+      features: [
+        'واجهة طلب سريعة مع تتبع حي عبر الخرائط',
+        'بوابة دفع إلكتروني ومدفوعات Apple Pay و مدى',
+        'نظام إشعارات فورية وتنبيهات للعملاء والسائقين',
+        'لوحة إدارة العمليات ومتابعة التقارير المالية'
+      ],
+      techs: ['Flutter', 'Node.js', 'Firebase'],
+      budget: '15-22 ألف ر.س',
+      duration: '5-7 أسابيع'
+    },
+    'بوابات الدفع': {
+      title: 'نظام المدفوعات الذكي',
+      category: 'ربط بوابات دفع متعددة وآمنة',
+      audience: 'العملاء المتممون لعمليات الشراء إلكترونياً.',
+      features: [
+        'تكامل فوري مع بوابات الدفع المحلية والعالمية',
+        'دعم بطاقات مدى، فيزا، ماستركارد، و Apple Pay',
+        'تسوية مالية تلقائية وتقارير أرباح لحظية',
+        'أمان وحماية عالية متوافقة مع معايير PCI-DSS'
+      ],
+      techs: ['Stripe', 'PayTabs', 'Node.js'],
+      budget: '5-8 آلاف ر.س',
       duration: '2-3 أسابيع'
     },
-    'تصميم هوية بصريّة': {
+    'هوية وتصميم': {
       title: 'هوية إبداعية متكاملة',
       category: 'تصميم هوية بصرية وعلامة تجارية مميزة',
       audience: 'الجمهور المستهدف لعلامتك التجارية في السوق المحلي والإقليمي.',
@@ -83,17 +115,9 @@ export default function SmartConversation({
     }
   };
 
-  const summary = projectDetailsMap[selectedIdea] || projectDetailsMap['تطوير متجر إلكتروني'];
+  const summary = projectDetailsMap[currentIdea] || projectDetailsMap['متجر إلكتروني'];
 
-  const initialUserPrompt = selectedMessage || (
-    selectedIdea === 'إنشاء تطبيق جوال'
-      ? 'أريد تطبيق جوال لتوصيل الطلبات وإدارة السائقين بكفاءة وسهولة.'
-      : selectedIdea === 'تصميم هوية بصريّة'
-      ? 'أريد تصميم هوية بصرية متكاملة وشعار يعبر عن هوية مشروعي الجديد.'
-      : selectedIdea === 'استشارة تقنية عامة'
-      ? 'أحتاج استشارة فنية لتحديد التقنيات الأنسب لبناء منصة رقمية سريعة وآمنة.'
-      : 'أريد متجراً إلكترونياً باسم «متجر رواق» للمنتجات الحرفية المحلية. يستهدف المتسوقين في السعودية المهتمين بالمنتجات الحرفية المحلية. أحتاج كاتالوجاً مع البحث والتصفية، والدفع بمدى وApple Pay. وتتبع الطلبات. ولوحة لإدارة المنتجات والطلبات.'
-  );
+  const initialUserPrompt = selectedMessage || 'أريد استكشاف تفاصيل هذا المشروع وخصائصه التقنية.';
 
   const [messages, setMessages] = useState([
     { 
@@ -106,7 +130,7 @@ export default function SmartConversation({
     },
     { 
       sender: 'ai', 
-      text: `فكرة واضحة وممتازة! أضفت احتياجاتك المتعلقة بـ (${selectedIdea}) إلى مسودة الملخص الحي على اليسار. راجع التفاصيل وأخبرني بأي إضافات أو تعديلات ترغب بها قبل الاعتماد.` 
+      text: `فكرة واضحة وممتازة! أضفت احتياجاتك المتعلقة بـ (${currentIdea}) إلى مسودة الملخص الحي على اليسار. راجع التفاصيل وأخبرني بأي إضافات أو تعديلات ترغب بها قبل الاعتماد.` 
     }
   ]);
 
@@ -120,7 +144,6 @@ export default function SmartConversation({
     setMessages(prev => [...prev, { sender: 'user', text: newMsg }]);
     setInputValue('');
 
-    // رد تلقائي ذكي من المساعد
     setTimeout(() => {
       setMessages(prev => [
         ...prev, 
@@ -132,11 +155,13 @@ export default function SmartConversation({
     }, 700);
   };
 
-  const handleQuickSuggestion = (text) => {
+  // دالة تغيير الفكرة/المشروع عند النقر على أي زر مقترح
+  const handleQuickSuggestion = (ideaName) => {
+    setCurrentIdea(ideaName);
     setMessages(prev => [
       ...prev,
-      { sender: 'user', text: `أريد التركيز على: ${text}` },
-      { sender: 'ai', text: `تم تحديث تركيز المشروع إلى (${text}). يمكنك مراجعة المزايا والتقنيات المقترحة في الملخص الحي.` }
+      { sender: 'user', text: `أريد التحويل إلى: ${ideaName}` },
+      { sender: 'ai', text: `تم تحديث مسار المشروع إلى (${ideaName}). يمكنك مراجعة المزايا والمواصفات الجديدة المحدثة في الملخص الحي على اليسار.` }
     ]);
   };
 
@@ -193,7 +218,7 @@ export default function SmartConversation({
       {/* المحتوى الرئيسي: عمودان (المحادثة على اليمين والملخص على الشمال) */}
       <div className="consultation-grid-container">
         
-        {/* 1. القسم الأيمن: صندوق المحادثة التفاعلي (تم وضعه أولاً ليظهر على اليمين) */}
+        {/* 1. القسم الأيمن: صندوق المحادثة التفاعلي */}
         <div className="chat-interface-card">
           <div className="chat-top-bar">
             <div className="chat-bot-info">
@@ -209,7 +234,7 @@ export default function SmartConversation({
           </div>
 
           <div className="chat-session-divider">
-            <span>جلسة استكشاف نشطة • {selectedIdea}</span>
+            <span>جلسة استكشاف نشطة • {currentIdea}</span>
           </div>
 
           {/* رسائل المحادثة */}
@@ -229,11 +254,36 @@ export default function SmartConversation({
               </div>
             ))}
 
-            {/* اقتراحات سريعة */}
-            <div className="quick-suggestions-row">
-              <button type="button" onClick={() => handleQuickSuggestion('إضافة تطبيق جوال')}>تطبيق جوال</button>
-              <button type="button" className="active-suggestion" onClick={() => handleQuickSuggestion('بوابات دفع مخصصة')}>بوابات الدفع</button>
-              <button type="button" onClick={() => handleQuickSuggestion('هوية وتصميم واجهات')}>هوية وتصميم</button>
+            {/* أزرار المقترحات السفلية (تمت إضافة زر "متجر إلكتروني" وزر "تطبيق جوال" وغيرها لتحديث الملخص فوراً) */}
+            <div className="quick-suggestions-row" style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginTop: '12px' }}>
+              <button 
+                type="button" 
+                className={currentIdea === 'متجر إلكتروني' ? 'active-suggestion' : ''} 
+                onClick={() => handleQuickSuggestion('متجر إلكتروني')}
+              >
+                متجر إلكتروني
+              </button>
+              <button 
+                type="button" 
+                className={currentIdea === 'تطبيق جوال' ? 'active-suggestion' : ''} 
+                onClick={() => handleQuickSuggestion('تطبيق جوال')}
+              >
+                تطبيق جوال
+              </button>
+              <button 
+                type="button" 
+                className={currentIdea === 'بوابات الدفع' ? 'active-suggestion' : ''} 
+                onClick={() => handleQuickSuggestion('بوابات الدفع')}
+              >
+                بوابات الدفع
+              </button>
+              <button 
+                type="button" 
+                className={currentIdea === 'هوية وتصميم' ? 'active-suggestion' : ''} 
+                onClick={() => handleQuickSuggestion('هوية وتصميم')}
+              >
+                هوية وتصميم
+              </button>
             </div>
           </div>
 
@@ -267,7 +317,7 @@ export default function SmartConversation({
           </div>
         </div>
 
-        {/* 2. القسم الأيسر: ملخص المشروع الحي (تم وضعه ثانياً ليظهر على الشمال) */}
+        {/* 2. القسم الأيسر: ملخص المشروع الحي (يتحدث تلقائياً حسب الزر المختار) */}
         <div className="live-summary-card">
           <div className="summary-header">
             <h3>ملخص المشروع الحي</h3>

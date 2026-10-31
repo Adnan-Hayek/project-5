@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import TopHeader from '../components/TopHeader';
+import ProjectDetails from './ProjectDetails';
 import './ProjectsList.css';
+import emptyProjectsImg from '../images/empty-projects.png';
 
 // MUI Icons
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
@@ -20,13 +22,17 @@ import SmartphoneRoundedIcon from '@mui/icons-material/SmartphoneRounded';
 export default function ProjectsList({ onNavigate }) {
   const [filter, setFilter] = useState('الكل');
   const [search, setSearch] = useState('');
+  const [selectedProjectForDetails, setSelectedProjectForDetails] = useState(null);
 
   const projects = [
     {
       id: 1,
       title: 'متجر سلة الخير',
+      fullTitle: 'متجر سلة الخير - تطوير واجهات المتجر',
       subtitle: 'تصميم واجهات وتجربة المستخدم UI/UX',
+      code: 'AC-019',
       leader: 'قائد المشروع: أحمد السالم',
+      leaderRole: 'قائد المشروع • مصمم واجهات',
       status: 'قيد التنفيذ',
       statusClass: 'in-progress',
       progress: 65,
@@ -38,21 +44,27 @@ export default function ProjectsList({ onNavigate }) {
     {
       id: 2,
       title: 'هوية نواة',
-      subtitle: 'تصميم الهوية البصرية',
+      fullTitle: 'هوية نواة - تصميم الهوية البصرية',
+      subtitle: 'تصميم وإبداع - بدأ في 01 أكتوبر 2026',
+      code: 'AC-023',
       leader: 'قائد المشروع: سارة القحطاني',
+      leaderRole: 'قائد الفريق • مصممة هوية',
       status: 'بانتظار المراجعة',
       statusClass: 'pending',
       progress: 90,
       nextAction: 'المخرجات جاهزة لمراجعتك',
-      budget: 'الميزانية غير محدودة',
-      date: 'مراجعة المخرجات',
+      budget: '4,500 ر.س',
+      date: '18 أكتوبر',
       icon: <SpaRoundedIcon sx={{ fontSize: 24, color: '#14A800' }} />
     },
     {
       id: 3,
       title: 'تطبيق موعد',
+      fullTitle: 'تطبيق موعد - تصميم تجربة المستخدم',
       subtitle: 'تصميم واجهات وتجربة المستخدم UI/UX',
+      code: 'AC-031',
       leader: 'قائد المشروع: خالد الحربي',
+      leaderRole: 'قائد المشروع • مطور تطبيقات',
       status: 'قيد التنفيذ',
       statusClass: 'in-progress',
       progress: 35,
@@ -62,6 +74,38 @@ export default function ProjectsList({ onNavigate }) {
       icon: <SmartphoneRoundedIcon sx={{ fontSize: 24, color: '#14A800' }} />
     }
   ];
+
+  // دالة فتح صفحة تفاصيل المشروع مباشرة
+  const handleOpenProjectDetails = (project) => {
+    setSelectedProjectForDetails(project);
+    if (onNavigate) {
+      onNavigate('project-details', project);
+    }
+  };
+
+  // دالة الرجوع لقائمة المشاريع
+  const handleBackToProjects = () => {
+    setSelectedProjectForDetails(null);
+    if (onNavigate) {
+      onNavigate('projects');
+    }
+  };
+
+  // إذا تم اختيار مشروع لعرض تفاصيله يتم عرض صفحة ProjectDetails مباشرة
+  if (selectedProjectForDetails) {
+    return (
+      <ProjectDetails 
+        projectData={selectedProjectForDetails}
+        onNavigate={(target, data) => {
+          if (target === 'projects' || target === 'back') {
+            handleBackToProjects();
+          } else if (onNavigate) {
+            onNavigate(target, data);
+          }
+        }}
+      />
+    );
+  }
 
   const filteredProjects = projects.filter(p => {
     const matchesFilter = 
@@ -77,7 +121,7 @@ export default function ProjectsList({ onNavigate }) {
     <div className="projects-list-page" dir="rtl">
       {/* 1. الهيدر العلوي الموحد */}
       <TopHeader 
-        userName="عبدالله محمد" 
+        userName="عبدالله العتيبي" 
         userRole="حساب عميل" 
         onNewProject={() => onNavigate && onNavigate('ai')} 
       />
@@ -93,7 +137,7 @@ export default function ProjectsList({ onNavigate }) {
         </div>
         <button 
           className="btn-new-project-main" 
-          onClick={() => onNavigate('ai')}
+          onClick={() => onNavigate && onNavigate('ai')}
           style={{
             background: '#14A800',
             color: '#ffffff',
@@ -162,7 +206,60 @@ export default function ProjectsList({ onNavigate }) {
 
       {/* 5. شبكة كروت المشاريع */}
       <div className="projects-cards-grid">
-        {filteredProjects.map((project) => (
+        {filteredProjects.length === 0 ? (
+          /* ===== حالة عدم وجود مشاريع ===== */
+          <div style={{
+            gridColumn: '1 / -1',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '48px 24px',
+            background: '#fff',
+            borderRadius: '16px',
+            border: '1px solid #EAEAEA',
+            textAlign: 'center',
+            gap: '12px',
+            minHeight: '320px'
+          }}>
+            <img
+              src={emptyProjectsImg}
+              alt="لا توجد مشاريع"
+              style={{ width: '200px', maxWidth: '80%', marginBottom: '8px' }}
+            />
+            <h3 style={{ fontSize: '20px', fontWeight: '900', color: '#181818', margin: 0 }}>
+              لا توجد لديك مشاريع قيد التنفيذ حالياً
+            </h3>
+            <p style={{ fontSize: '13px', color: '#667085', maxWidth: '400px', lineHeight: 1.7, margin: 0 }}>
+              ابدأ بتحويل فكرتك اليوم إلى مشروع حقيقي. اختر نوع الاستشارة وبما تعاون فريقك المخصص
+            </p>
+            <button
+              type="button"
+              onClick={() => onNavigate && onNavigate('ai')}
+              style={{
+                background: '#14A800',
+                color: '#fff',
+                border: 'none',
+                borderRadius: '10px',
+                padding: '11px 28px',
+                fontSize: '13.5px',
+                fontWeight: '800',
+                cursor: 'pointer',
+                fontFamily: 'inherit',
+                marginTop: '4px',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px'
+              }}
+            >
+              + ابدأ مشروعك الأول الآن
+            </button>
+            <small style={{ fontSize: '11px', color: '#94A3B8', marginTop: '4px' }}>
+              خطوات الأول الاستشارية الذكية لتوضيح فكرتك
+            </small>
+          </div>
+        ) : (
+        filteredProjects.map((project) => (
           <div className="proj-card" key={project.id}>
             <div className="proj-card-top">
               <span className={`proj-status-badge ${project.statusClass}`}>
@@ -175,7 +272,13 @@ export default function ProjectsList({ onNavigate }) {
             </div>
 
             <div className="proj-card-main">
-              <h2>{project.title}</h2>
+              <h2 
+                onClick={() => handleOpenProjectDetails(project)} 
+                style={{ cursor: 'pointer' }}
+                title="اضغط لعرض تفاصيل المشروع"
+              >
+                {project.title}
+              </h2>
               <p className="proj-sub">{project.subtitle}</p>
               <div className="proj-leader-info">
                 <PersonOutlineRoundedIcon sx={{ fontSize: 16, color: '#667085', verticalAlign: 'text-bottom', ml: 0.5 }} /> 
@@ -207,20 +310,32 @@ export default function ProjectsList({ onNavigate }) {
 
             <div className="proj-card-actions">
               {project.status === 'بانتظار المراجعة' ? (
-                <button className="btn-review-outline" onClick={() => onNavigate('review-deliverables')}>
+                <button 
+                  className="btn-review-outline" 
+                  onClick={() => onNavigate ? onNavigate('review-deliverables', project) : handleOpenProjectDetails(project)}
+                >
                   مراجعة المخرجات
                 </button>
               ) : (
-                <button className="btn-details-link" onClick={() => onNavigate('project-details')}>
+                <button 
+                  className="btn-details-link" 
+                  onClick={() => handleOpenProjectDetails(project)}
+                >
                   {project.nextAction}
                 </button>
               )}
-              <button className="btn-details-link" onClick={() => onNavigate('project-details')}>
+              {/* زر عرض تفاصيل المشروع المربوط مباشرة بصفحة ProjectDetails */}
+              <button 
+                className="btn-details-link" 
+                onClick={() => handleOpenProjectDetails(project)}
+                style={{ cursor: 'pointer' }}
+              >
                 عرض تفاصيل المشروع <ArrowOutwardRoundedIcon sx={{ fontSize: 16, verticalAlign: 'middle', mr: 0.5 }} />
               </button>
             </div>
           </div>
-        ))}
+        ))
+        )} {/* نهاية الشرط filteredProjects.length === 0 */}
       </div>
 
       {/* 6. البانرات السفلية */}
@@ -235,7 +350,10 @@ export default function ProjectsList({ onNavigate }) {
               <p>مخرجات «هوية نواة» بانتظار مراجعتك. شارك ملاحظاتك مع سارة القحطاني</p>
             </div>
           </div>
-          <button className="btn-banner-white" onClick={() => onNavigate('review-deliverables')}>
+          <button 
+            className="btn-banner-white" 
+            onClick={() => handleOpenProjectDetails(projects[1])}
+          >
             مراجعة المخرجات
           </button>
         </div>
@@ -250,7 +368,7 @@ export default function ProjectsList({ onNavigate }) {
               <p>حوّل فكرتك إلى ملخص واضح مع الاستشارة الذكية</p>
             </div>
           </div>
-          <button className="btn-banner-green" onClick={() => onNavigate('ai')}>
+          <button className="btn-banner-green" onClick={() => onNavigate && onNavigate('ai')}>
             ابدأ الاستشارة الذكية <ArrowOutwardRoundedIcon sx={{ fontSize: 16, verticalAlign: 'middle', mr: 0.5 }} />
           </button>
         </div>

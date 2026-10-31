@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import SmartConsultation from '../pages/SmartConsultation';
 import SmartConversation from '../pages/SmartConversation';
 import Overview from '../pages/Overview';
@@ -6,6 +6,10 @@ import ProjectsList from '../pages/ProjectsList';
 import ProjectDetails from '../pages/ProjectDetails';
 import ReviewDeliverables from '../pages/ReviewDeliverables';
 import FinalDelivery from '../pages/​FinalDelivery';
+import WalletPage from '../pages/WalletPage'; // <-- استيراد صفحة المحفظة المالية بنجاح
+import Settings from '../pages/Settings';
+import Profile from '../pages/Profile';
+import Messages from '../pages/Messages';
 
 import logoimage from '../images/Aaa.png';
 import './ClientLayout.css';
@@ -20,7 +24,6 @@ import PersonOutlineRoundedIcon from '@mui/icons-material/PersonOutlineRounded';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import HeadsetMicRoundedIcon from '@mui/icons-material/HeadsetMicRounded';
 import ChevronLeftRoundedIcon from '@mui/icons-material/ChevronLeftRounded';
-import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 
 export default function ClientLayout({ 
   initialTab = 'dashboard', 
@@ -31,9 +34,16 @@ export default function ClientLayout({
   const [activeTab, setActiveTab] = useState(initialTab);
   const [consultationSubView, setConsultationSubView] = useState(subView || 'consultation');
   const [consultationData, setConsultationData] = useState(null);
+  const [selectedProject, setSelectedProject] = useState(null);
+  const [walletModal, setWalletModal] = useState(initialTab === 'wallet-escrow' ? 'escrow' : null);
 
   useEffect(() => {
-    if (initialTab) setActiveTab(initialTab);
+    if (initialTab === 'wallet-escrow') {
+      setActiveTab('wallet');
+      setWalletModal('escrow');
+    } else if (initialTab) {
+      setActiveTab(initialTab);
+    }
   }, [initialTab]);
 
   useEffect(() => {
@@ -49,6 +59,28 @@ export default function ClientLayout({
       setActiveTab('ai');
       setConsultationSubView('consultation');
       if (data) setConsultationData(data);
+    } else if (
+      target === 'project-details' || 
+      target === 'projectDetails' || 
+      target === 'ProjectDetails'
+    ) {
+      setActiveTab('project-details');
+      if (data) setSelectedProject(data);
+    } else if (target === 'review-deliverables') {
+      setActiveTab('review-deliverables');
+      if (data) setSelectedProject(data);
+    } else if (target === 'final-delivery') {
+      setActiveTab('final-delivery');
+      if (data) setSelectedProject(data);
+    } else if (target === 'wallet' || target === 'wallet-escrow') {
+      setActiveTab('wallet');
+      if (target === 'wallet-escrow') {
+        setWalletModal('escrow');
+      } else if (data) {
+        setWalletModal(typeof data === 'string' ? data : data.modal || null);
+      } else {
+        setWalletModal(null);
+      }
     } else if (target === 'home' || target === 'logout') {
       if (onLogout) onLogout();
       else if (onNavigate) onNavigate('home');
@@ -85,7 +117,7 @@ export default function ClientLayout({
           </button>
           
           <button 
-            className={activeTab === 'projects' ? 'active' : ''} 
+            className={(activeTab === 'projects' || activeTab === 'project-details' || activeTab === 'review-deliverables' || activeTab === 'final-delivery') ? 'active' : ''} 
             onClick={() => handleNavigation('projects')}
           >
             <span className="menu-icon"><FolderRoundedIcon fontSize="small" /></span> مشاريعي <span className="badge-num">3</span>
@@ -95,7 +127,7 @@ export default function ClientLayout({
             className={activeTab === 'ai' ? 'active' : ''} 
             onClick={() => handleNavigation('ai')}
           >
-            <span className="menu-icon"><SmartToyRoundedIcon fontSize="small" /></span> الاستشارة الذكية
+            <span className="menu-icon"><SmartToyRoundedIcon fontSize="small" /></span> الاستشارة
           </button>
           
           <button 
@@ -153,9 +185,13 @@ export default function ClientLayout({
       <main className="client-main-content">
         {activeTab === 'dashboard' && <Overview onNavigate={handleNavigation} />}
         {activeTab === 'projects' && <ProjectsList onNavigate={handleNavigation} />}
-        {activeTab === 'project-details' && <ProjectDetails onNavigate={handleNavigation} />}
-        {activeTab === 'review-deliverables' && <ReviewDeliverables onNavigate={handleNavigation} />}
-        {activeTab === 'final-delivery' && <FinalDelivery onNavigate={handleNavigation} />}
+        {(activeTab === 'project-details' || activeTab === 'projectDetails') && <ProjectDetails onNavigate={handleNavigation} projectData={selectedProject} />}
+        {activeTab === 'review-deliverables' && <ReviewDeliverables onNavigate={handleNavigation} projectData={selectedProject} />}
+        {activeTab === 'final-delivery' && <FinalDelivery onNavigate={handleNavigation} projectData={selectedProject} />}
+        {activeTab === 'wallet' && <WalletPage onNavigate={handleNavigation} initialModal={walletModal} />} {/* <-- عرض صفحة المحفظة المالية هنا بنجاح */}
+        {activeTab === 'settings' && <Settings onNavigate={handleNavigation} />}
+        {activeTab === 'profile' && <Profile onNavigate={handleNavigation} />}
+        {activeTab === 'messages' && <Messages onNavigate={handleNavigation} userName="عبدالله العتيبي" userRole="حساب عميل" />}
         {activeTab === 'ai' && (
           consultationSubView === 'conversation' ? (
             <SmartConversation 
